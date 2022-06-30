@@ -16,6 +16,8 @@ const JOKES = [
 
 export const handler = (_req: Request, _ctx: HandlerContext): Response => {
   const randomIndex = Math.floor(Math.random() * JOKES.length);
-  const body = JOKES[randomIndex];
-  return new Response(body);
+  const randomJoke = JOKES[randomIndex];
+
+  const payload = { randomJoke }
+  return new Response(JSON.stringify(payload), { headers: { 'content-type': 'application/json' } });
 };
