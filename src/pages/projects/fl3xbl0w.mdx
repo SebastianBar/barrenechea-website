@@ -1,0 +1,69 @@
+import BaseProject from "@/templates/BaseProject.astro";
+import ProjectImage from "@/assets/images/project-fl3xbl0w.png";
+
+export const title = "fl3xbl0w";
+export const description =
+  "Reverse engineering project. Started on Bowflex Treadmill 22 but ended up generalized to any Android powered machine sold by Nautilus Inc. (Nautilus, Bowflex, Schwinn).";
+export const pubDate = new Date("2022-05-28T10:28:00Z");
+export const link = "#";
+export const imgSrc = ProjectImage;
+export const imgAlt = "Logo of the flexblow project";
+export const tags = ["ReverseEngineering", "Uart", "Android"];
+
+
+export default function Layout({ children }) {
+  return <BaseProject title={title} description={description} imgSrc={imgSrc} imgAlt={imgAlt} pubDate={pubDate}>{children}</BaseProject>;
+}
+
+It is the documentation of the "Bowflex Console" (what Nautilus refers to as Vantron), which drives most of the "smart devices" from Bowflex (basically, an Android tablet running proprietary software), and also some hardware-related stuff that I got curious on.
+  
+I heavily relied on some previous work provided over [Reddit](https://www.reddit.com/r/Bowflex/comments/mi8wdo/unlocking_bowflex_velocore/) (thanks [xasmx](https://www.reddit.com/user/xasmx/)!) to achieve a deeper understanding on the machine's software & hardware.
+  
+## Supported devices (Android Jailbreak)
+
+After playing with the [decompiled apps](/projects/fl3xbl0w/decompiling) I can certainly say that the following documentation could be extrapolated in one way or another to the following Bowflex devices:
+
+### Treadmills
+
+- Treadmill 22 / Treadmill 56 (same treadmill. 56 is 220v AC input, 22 is 120v AC input)
+- Treadmill 10 / Treadmill 25 (same treadmill. 25 is 220v AC input, 10 is 120v AC input)
+
+### Bikes
+
+- VeloCore
+
+### Max Trainer
+
+- Max Total 16
+- Max Trainer M9
+
+I don't own a Max Trainer or a VeloCore, but it should work as long as you have an available USB port based on the codebase findings.
+
+Confirmed to be working with NautilusLauncher versions:
+
+- 5.0.0.350
+- 5.0.0.382 (latest as of May 2022)
+
+> _Your device is supported but not on the list? Let us all know!_
+
+## Documentation
+
+### General information
+
+- [Android Jailbreak](/projects/fl3xbl0w/jailbreak)
+- [Backup your Console contents](/projects/fl3xbl0w/backup)
+- [Decompiling](/projects/fl3xbl0w/decompiling)
+- [Bowflex Quirks](/projects/fl3xbl0w/quirks)
+
+### Work in progress
+
+- [Treadmill Motor Controller](/projects/fl3xbl0w/treadmotor)
+- [ROM Dump](/projects/fl3xbl0w/romdump)
+
+## End goal
+
+To enable as much future-proofing to my treadmill as possible.
+
+Nautilus, Inc. only provides a 1-year warranty on the electronics side of things, and as soon as I saw that the mechanism for turning off the machine (and so, the Android tablet) was to basically "cut the AC power through the back switch", that scared me. Every Linux-based device should be safely turned off to avoid OS corruption, and this Android tablet is no exception. So while it's working, why not have some "extra fun" with it?.
+
+In the end, I want to intercept, understand, and recreate the communication going to the Motor Control Board on my treadmill so if the tablet dies, I still have a working device.

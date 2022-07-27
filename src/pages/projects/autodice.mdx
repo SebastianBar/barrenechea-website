@@ -1,0 +1,29 @@
+import BaseProject from "@/templates/BaseProject.astro";
+import ProjectImage from "@/assets/images/project-autodice.png";
+import FooterImage from "@/assets/images/autodice-infographic.png";
+import { Image } from '@astrojs/image/components';
+
+export const title = "AutoDice";
+export const description =
+  'Desktop App that connects with multiple sites for cryptocurrency betting on the "Dice" game.';
+export const pubDate = new Date("2015-07-27T01:46:14Z");
+export const link = "https://github.com/SebastianBar/AutoDice";
+export const imgSrc = ProjectImage;
+export const imgAlt = "Logo of the AutoDice project";
+export const tags = ["CSharp", "DotNet6"];
+
+export default function Layout({ children }) {
+  return <BaseProject title={title} description={description} imgSrc={imgSrc} imgAlt={imgAlt} pubDate={pubDate}>{children}</BaseProject>;
+}
+
+This project started when I was studying Computer Science, and it was just my first attempt at making something useful and related to stuff I was involved in at that time.
+
+I was going out from Java GUI (which sucks) to C#, which allowed me to get involved with [MahApps.Metro](https://mahapps.com/), which I considered back in 2015 as pretty as f\*\*k (compared to stock WinForms).
+
+I released the project back on 2015 on [Bitcointalk](https://bitcointalk.org/index.php?topic=1135816.0) and [Github](https://github.com/SebastianBar/AutoDice). The app's differentiator was the UI, and a strategies hub, enabling users to upload and share their strategies with other users. you can check the Bitcointalk thread for more information.
+
+On 2022, I've [updated the project](https://github.com/SebastianBar/AutoDice/commit/194cb75cbf924faa50528c8da1b259b2f51213f1) from .NET Framework 4.5 into .NET 6.0 as housekeeping (and to keep me up-to-date with bootstrapping .NET projects). I also removed [Costura](https://github.com/Fody/Costura) since it's not the way to bundle stuff in .NET 6.0.
+
+Here's a copy of the "infographic" I created at that time for my Bitcointalk post:
+
+<Image src={FooterImage} alt="AutoDice Infographic" />

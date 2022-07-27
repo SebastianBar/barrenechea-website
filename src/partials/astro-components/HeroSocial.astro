@@ -1,0 +1,14 @@
+---
+export interface Props {
+  src: string;
+  alt: string;
+}
+
+const { src, alt } = Astro.props as Props;
+---
+
+<div
+  class="transition ease-out hover:scale-125 motion-reduce:transition-none motion-reduce:hover:transform-none"
+>
+  <img src={src} alt={alt} class="h-12 w-12" />
+</div>

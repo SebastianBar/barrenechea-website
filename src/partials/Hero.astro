@@ -1,0 +1,60 @@
+---
+import { Image } from '@astrojs/image/components';
+
+import avatars from '@/constants/avatar';
+import socials from '@/constants/social';
+import GradientText from '@/partials/astro-components/GradientText.astro';
+import HeroAvatar from '@/partials/astro-components/HeroAvatar.astro';
+import HeroSocial from '@/partials/astro-components/HeroSocial.astro';
+import Section from '@/partials/astro-components/Section.astro';
+
+const avatar = avatars[0]!;
+---
+
+<Section>
+  <HeroAvatar>
+    <Fragment slot="title">
+      Hi there, I'm <GradientText>Sebastian Barrenechea</GradientText> 👋
+    </Fragment>
+    <Fragment slot="description">
+      <p class="text-xl">I'm a Software Engineer located in Chile 🇨🇱</p>
+      <p class="text-xl">
+        You can find me playing with proof-of-concepts and blazingly fast new
+        technologies ⚡️
+      </p>
+      <p class="text-xl">
+        Currently working at <a
+          class="text-amber-400 hover:text-amber-300"
+          href="https://www.finalis.com"
+          target="_blank"
+          >Finalis
+        </a>
+      </p>
+    </Fragment>
+    <Fragment slot="avatar">
+      <Image
+        class="h-64 w-64"
+        src={avatar.img}
+        alt={`Avatar image in ${avatar.style} style generated from ${avatar.by}`}
+        format={'webp'}
+        width={256}
+        height={256}
+      />
+      <p class="text-xs italic text-zinc-500">
+        {avatar.style} style from <a
+          class="text-zinc-400 hover:text-zinc-300"
+          href={avatar.url}
+          target="_blank"
+          >{avatar.by}
+        </a>
+      </p>
+    </Fragment>
+    <Fragment slot="socialButtons">
+      {socials.map(({ url, icon, name }) => (
+        <a href={url} target="_blank">
+          <HeroSocial src={icon} alt={`${name} icon`} />
+        </a>
+      ))}
+    </Fragment>
+  </HeroAvatar>
+</Section>

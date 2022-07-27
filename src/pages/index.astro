@@ -1,0 +1,25 @@
+---
+import Hero from '@/partials/Hero.astro';
+import RecentPosts from '@/partials/RecentPosts.astro';
+import RecentProjects from '@/partials/RecentProjects.astro';
+import Base from '@/templates/Base.astro';
+import type { IMDX } from '@/types/imdx';
+import { AppConfig } from '@/utils/AppConfig';
+import { sortByDate } from '@/utils/Posts';
+
+const allPosts = await Astro.glob<IMDX>('./posts/*.mdx');
+const sortedPosts = sortByDate(allPosts);
+const lastThreePosts = sortedPosts.slice(0, 3);
+
+const allProjects = await Astro.glob<IMDX>('./projects/*.mdx');
+const sortedProjects = sortByDate(allProjects);
+const lastThreeProjects = sortedProjects.slice(0, 3);
+
+const { siteName: title, description } = AppConfig;
+---
+
+<Base head={{ title, description }}>
+  <Hero />
+  <RecentProjects projectList={lastThreeProjects} />
+  <RecentPosts postList={lastThreePosts} />
+</Base>

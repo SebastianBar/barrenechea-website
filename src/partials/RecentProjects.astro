@@ -1,0 +1,68 @@
+---
+import GradientText from '@/partials/astro-components/GradientText.astro';
+import Project from '@/partials/astro-components/Project.astro';
+import Section from '@/partials/astro-components/Section.astro';
+import Tags from '@/partials/astro-components/Tags.astro';
+import type { IMDX } from '@/types/imdx';
+
+export interface Props {
+  projectList: IMDX[];
+}
+
+const tags = {
+  CSharp: { color: 'PURPLE', text: 'C#' },
+  DotNet6: { color: 'FUCHSIA', text: '.NET 6.0' },
+  Xcode: { color: 'CYAN', text: 'Xcode' },
+  Containers: { color: 'ROSE', text: 'Containers' },
+  Architecture: { color: 'ORANGE', text: 'Architecture' },
+  Pipelines: { color: 'LIME', text: 'Pipelines' },
+  TailwindCSS: { color: 'SKY', text: 'Tailwind.css' },
+  TypeScript: { color: 'BLUE', text: 'TypeScript' },
+  WebScraping: { color: 'VIOLET', text: 'Web Scraping' },
+  Blog: { color: 'EMERALD', text: 'Blog' },
+  JavaScript: { color: 'YELLOW', text: 'JavaScript' },
+  AstroJS: { color: 'INDIGO', text: 'Astro.js' },
+  ReverseEngineering: { color: 'STONE', text: 'Reverse Engineering' },
+  Uart: { color: 'AMBER', text: 'UART' },
+  Android: { color: 'EMERALD', text: 'Android' },
+} as {
+  [key: string]: { color: string; text: string };
+};
+
+const defaultTag = { color: 'GRAY', text: 'UNDEFINED TAG' };
+
+const { projectList } = Astro.props as Props;
+---
+
+<Section>
+  <div slot="title" class="flex items-baseline justify-between">
+    <div>
+      Recent <GradientText>Projects</GradientText>
+    </div>
+
+    <div class="text-sm">
+      <a href="/projects" class="text-zinc-200 hover:text-white"
+        >View all Projects →
+      </a>
+    </div>
+  </div>
+  <div class="flex flex-col gap-6">
+    {projectList.map((project) => (
+      <Project
+        name={project.title}
+        description={project.description}
+        link={project.url || '#'}
+        img={{
+          src: project.imgSrc,
+          alt: project.imgAlt,
+        }}
+      >
+        {(project.tags || []).map((tag) => (
+          <Tags color={(tags[tag] || defaultTag).color}>
+            {(tags[tag] || defaultTag).text}
+          </Tags>
+        ))}
+      </Project>
+    ))}
+  </div>
+</Section>

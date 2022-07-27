@@ -1,0 +1,27 @@
+---
+import BlogGallery from '@/partials/astro-components/BlogGallery.astro';
+import GradientText from '@/partials/astro-components/GradientText.astro';
+import Section from '@/partials/astro-components/Section.astro';
+import type { IMDX } from '@/types/imdx';
+
+export interface Props {
+  postList: IMDX[];
+}
+
+const { postList } = Astro.props as Props;
+---
+
+<Section>
+  <div slot="title" class="flex items-baseline justify-between">
+    <div>
+      Recent <GradientText>Posts</GradientText>
+    </div>
+
+    <div class="text-sm">
+      <a href="/posts" class="text-zinc-200 hover:text-white"
+        >View all Posts →
+      </a>
+    </div>
+  </div>
+  <BlogGallery postList={postList} />
+</Section>

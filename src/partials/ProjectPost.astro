@@ -1,0 +1,64 @@
+---
+import type { ImageMetadata } from '@astrojs/image';
+import { Image } from '@astrojs/image/components';
+
+import Section from '@/partials/astro-components/Section.astro';
+import { formatDate } from '@/utils/dates';
+
+export interface Props {
+  title: string;
+  description: string;
+  imgSrc: ImageMetadata;
+  imgAlt: string;
+  pubDate?: Date;
+}
+
+const { title, description, imgSrc, imgAlt, pubDate } = Astro.props as Props;
+const formattedDate = pubDate ? `Released on ${formatDate(pubDate)}` : null;
+---
+
+<Section>
+  <div
+    class="relative mx-auto my-6 mt-16 w-full min-w-0 max-w-md break-words rounded-xl bg-zinc-800 shadow-lg md:max-w-2xl"
+  >
+    <div class="px-6">
+      <div class="flex flex-wrap justify-center">
+        <div class="flex w-full justify-center">
+          <div class="relative">
+            <Image
+              src={imgSrc}
+              alt={imgAlt}
+              class="-mt-16 h-[150px] w-[150px] rounded-full bg-zinc-200 object-scale-down p-3 ring-2 ring-gray-500"
+            />
+          </div>
+        </div>
+        <div class="mt-16"></div>
+      </div>
+      <div class="mt-2 text-center">
+        <h3 class="mb-1 text-2xl font-bold leading-normal text-zinc-200">
+          {title}
+        </h3>
+        {formattedDate && (
+          <div class="mt-0 mb-2 text-xs font-bold uppercase text-zinc-400">
+            {formattedDate}
+          </div>
+        )}
+      </div>
+      <div class="mt-6 border-t border-zinc-200 py-6 text-center">
+        <div class="flex flex-wrap justify-center">
+          <div class="w-full px-4">
+            <p class="mb-4 font-light leading-relaxed text-zinc-300">
+              {description}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-5 max-w-prose">
+    <div class="prose prose-invert prose-img:rounded-lg mt-8">
+      <slot />
+    </div>
+  </div>
+</Section>

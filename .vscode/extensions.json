@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "mikestead.dotenv",
+    "bradlc.vscode-tailwindcss",
+    "moalamri.inline-fold",
+    "silvenon.mdx"
+  ],
+  "unwantedRecommendations": []
+}

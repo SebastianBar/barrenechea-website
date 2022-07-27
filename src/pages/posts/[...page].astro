@@ -1,0 +1,48 @@
+---
+import type { PaginateFunction } from 'astro';
+
+import BlogGallery from '@/partials/astro-components/BlogGallery.astro';
+import Pagination from '@/partials/astro-components/Pagination.astro';
+import PaginationHeader from '@/partials/astro-components/PaginationHeader.astro';
+import Section from '@/partials/astro-components/Section.astro';
+import Base from '@/templates/Base.astro';
+import type { IMDX, IMDXPage } from '@/types/imdx';
+import { AppConfig } from '@/utils/AppConfig';
+import { sortByDate } from '@/utils/Posts';
+
+type GetStaticPaths = {
+  paginate: PaginateFunction;
+};
+
+export async function getStaticPaths({ paginate }: GetStaticPaths) {
+  const allPosts = await Astro.glob<IMDX>('./*.mdx');
+  const sortedPosts = sortByDate(allPosts);
+
+  // Return a paginated collection of paths for all posts
+  return paginate(sortedPosts, { pageSize: 6 });
+}
+
+interface Props {
+  page: IMDXPage;
+}
+
+const { page } = Astro.props as Props;
+const titleBase = `Page ${page.currentPage} - Posts`;
+const title = `${titleBase} - ${AppConfig.siteName}`;
+const description =
+  'Paginated result of some brain-dumping processes that I go through from time to time';
+---
+
+<Base head={{ title, description }}>
+  <Section>
+    <PaginationHeader title="Posts" description={description} />
+  </Section>
+
+  <Section>
+    <BlogGallery postList={page.data} />
+  </Section>
+
+  <Section>
+    <Pagination imdxPage={page} />
+  </Section>
+</Base>

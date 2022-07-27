@@ -1,0 +1,17 @@
+import BasePost from "@/templates/BasePost.astro";
+import ProjectImage from "@/assets/images/image-post6.jpeg";
+
+export const title = "Hello Lorem ipsum dolor sit";
+export const description =
+  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi.";
+export const pubDate = new Date("2020-01-01T00:00:00Z");
+export const link = "#";
+export const imgSrc = ProjectImage;
+export const imgAlt = 'Image post 6';
+export const tags = [];
+
+export default function Layout({ children }) {
+  return <BasePost title={title} description={description} imgSrc={imgSrc} imgAlt={imgAlt} pubDate={pubDate}>{children}</BasePost>;
+}
+
+Full typography example at [this page](./sixth-post).

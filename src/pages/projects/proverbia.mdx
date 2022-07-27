@@ -1,0 +1,22 @@
+import BaseProject from "@/templates/BaseProject.astro";
+import ProjectImage from "@/assets/images/project-proverbia.png";
+
+export const title = "Puppeteer Proverbia Script";
+export const description =
+  'A Puppeteer script to fetch their "Quote of the day" and return it as a JSON response over Standard Output (stdout).';
+export const pubDate = new Date("2021-06-26T12:49:00Z");
+export const link =
+  "https://github.com/SebastianBar/puppeteer-proverbia-script";
+export const imgSrc = ProjectImage;
+export const imgAlt = "Puppeteer and Proverbia logos";
+export const tags = ["WebScraping", "TypeScript"];
+
+export default function Layout({ children }) {
+  return <BaseProject title={title} description={description} imgSrc={imgSrc} imgAlt={imgAlt} pubDate={pubDate}>{children}</BaseProject>;
+}
+
+[Proverbia](https://proverbia.net) is a Spanish collection of famous phrases, quotes, proverbs, and sayings organized by subject and author. It is a free website for you to go and see, but they don't provide any API for you to use.
+
+I wanted to develop a Telegram bot that delivered the Proverbia's quote of the day to the user once it delivered a message. So I required a clean way to query their quotes programmatically.
+
+And so this project does precisely that and is a quick and friendly example to show off Puppeteer's capabilities.

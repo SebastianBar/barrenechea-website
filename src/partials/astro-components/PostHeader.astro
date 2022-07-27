@@ -1,0 +1,22 @@
+---
+import type { IMDX } from '@/types/imdx';
+import { formatDate } from '@/utils/dates';
+
+export interface Props {
+  content: IMDX;
+  author: string;
+}
+
+const { content, author } = Astro.props as Props;
+const formattedDate = content.pubDate
+  ? ` on ${formatDate(new Date(content.pubDate))}`
+  : '';
+---
+
+<>
+  <h1 class="text-center text-3xl font-bold">{content.title}</h1>
+
+  <div class="mt-2 text-center text-sm text-gray-400">
+    By {author}{formattedDate}
+  </div>
+</>

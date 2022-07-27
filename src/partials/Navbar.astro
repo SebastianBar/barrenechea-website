@@ -1,0 +1,39 @@
+---
+import socials from '@/constants/social';
+import Logo from '@/partials/astro-components/Logo.astro';
+import NavbarTwoColumns from '@/partials/astro-components/NavbarTwoColumns.astro';
+import NavMenu from '@/partials/astro-components/NavMenu.astro';
+import NavMenuItem from '@/partials/astro-components/NavMenuItem.astro';
+import Section from '@/partials/astro-components/Section.astro';
+---
+
+<Section>
+  <NavbarTwoColumns>
+    <a href="/">
+      <Logo name="Barrenechea">
+        <svg
+          class="mr-1 h-10 w-10 stroke-amber-400"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 48 48"
+        >
+          <path
+            fill="none"
+            stroke-miterlimit="10"
+            stroke-width="2"
+            d="M27.6 22.7H9.2V4.3h10.4a8 8 0 0 1 8 8v10.4zm2.9 21.6H9.2V27h29.3v9.2a8 8 0 0 1-8 8z"
+          ></path>
+        </svg>
+      </Logo>
+    </a>
+
+    <NavMenu>
+      <NavMenuItem href="/projects">Projects</NavMenuItem>
+      <NavMenuItem href="/posts">Posts</NavMenuItem>
+      {socials.map(({ name, url }) => (
+        <NavMenuItem target="_blank" href={url}>
+          {name}
+        </NavMenuItem>
+      ))}
+    </NavMenu>
+  </NavbarTwoColumns>
+</Section>

@@ -1,0 +1,55 @@
+---
+import faviconSvg from '@/assets/favicon.svg';
+import Footer from '@/partials/Footer.astro';
+import Navbar from '@/partials/Navbar.astro';
+import { AppConfig } from '@/utils/AppConfig';
+
+export interface Props {
+  head: {
+    title: string;
+    description: string;
+  };
+}
+
+const {
+  head: { title, description },
+} = Astro.props as Props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={AppConfig.author} />
+
+    <link rel="alternate" type="application/rss+xml" href="/rss.xml" />
+    <link rel="icon" href={faviconSvg} type="image/svg+xml" />
+    <!-- <link rel="icon" href={faviconPng} type="image/png" /> -->
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-L5QEGL7QZE"
+    >
+
+    </script>
+    <script type="text/partytown">
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'G-L5QEGL7QZE');
+    </script>
+  </head>
+  <body class="bg-zinc-900 text-gray-100">
+    <Navbar />
+
+    <slot />
+
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,52 @@
+---
+import { Image } from '@astrojs/image/components';
+
+import type { IMDX } from '@/types/imdx';
+import { formatDate } from '@/utils/dates';
+
+export interface Props {
+  key: string | undefined;
+  instance: IMDX;
+}
+
+const { key, instance } = Astro.props as Props;
+const formattedDate = instance.pubDate ? formatDate(instance.pubDate) : null;
+---
+
+<a
+  id={key}
+  class="transition ease-out hover:scale-105 motion-reduce:transition-none motion-reduce:hover:transform-none"
+  href={instance.url}
+>
+  <div class="overflow-hidden rounded-md bg-zinc-800">
+    <div class="aspect-w-3 aspect-h-2 bg-zinc-200">
+      {typeof instance.imgSrc === 'string' && (instance.imgSrc as string).includes('svg') ? (
+        <img
+          src={instance.imgSrc}
+          alt={instance.imgAlt}
+          class="h-full w-full object-scale-down object-center"
+        />
+      ) : (
+        <Image
+          class="h-full w-full object-cover object-center"
+          src={instance.imgSrc}
+          alt={instance.imgAlt}
+        />
+      )}
+    </div>
+
+    <div class="px-3 pt-4 pb-6 text-center">
+      <h2 class="text-xl font-semibold">
+        {instance.title}
+      </h2>
+
+      {formattedDate && (
+        <div class="mt-1 text-xs text-gray-400">{formattedDate}</div>
+      )}
+
+      <div class="mt-2 text-sm">
+        {instance.description}
+      </div>
+    </div>
+  </div>
+</a>

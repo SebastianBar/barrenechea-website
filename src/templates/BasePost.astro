@@ -1,0 +1,15 @@
+---
+import BlogPost from '@/partials/BlogPost.astro';
+import Base from '@/templates/Base.astro';
+import type { IMDX } from '@/types/imdx';
+import { AppConfig } from '@/utils/AppConfig';
+
+const content = Astro.props as IMDX;
+const title = `${content.title} - ${AppConfig.siteName}`;
+---
+
+<Base head={{ title, description: content.description }}>
+  <BlogPost content={content}>
+    <slot />
+  </BlogPost>
+</Base>

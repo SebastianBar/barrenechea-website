@@ -1,0 +1,20 @@
+# build output
+dist/
+.output/
+
+# dependencies
+node_modules/
+
+# logs
+*-debug.log*
+*-error.log*
+
+# environment variables
+.env*.local
+
+# macOS-specific files
+.DS_Store
+
+# misc
+*.pem
+Thumbs.db

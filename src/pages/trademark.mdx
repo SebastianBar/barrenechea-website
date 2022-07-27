@@ -1,0 +1,36 @@
+import BaseProject from "@/templates/BaseProject.astro";
+import ProjectImage from "@/assets/images/inapi-logo.png";
+import FooterImage from "@/assets/images/wipo-prosur-logos.png";
+import { Image } from '@astrojs/image/components';
+
+export const title = "Registered Trademark";
+export const description =
+  "Registration process for Barrenechea as a denominative trademark through INAPI.";
+export const pubDate = new Date("2022-07-08T08:00:00Z");
+export const link = "#";
+export const imgSrc = ProjectImage;
+export const imgAlt = "INAPI logo";
+export const tags = [];
+
+export default function Layout({ children }) {
+  return <BaseProject title={title} description={description} imgSrc={imgSrc} imgAlt={imgAlt} pubDate={pubDate}>{children}</BaseProject>;
+}
+
+**_TL;DR: In an attempt to unify my presence on the internet, I successfully went through the INAPI trademark registration process here in Chile._**
+
+I've been the owner of the `barrenechea.cl` domain since 2016, and I've been using it since then.
+Custom mail address, integration with my HomeServer, and this blog you're reading. It certainly has its place in the world of the internet.
+
+But having a domain is not good enough to justify requesting specific username ownership across the internet. It would be best if you had trademark ownership.
+
+After a bit of back and forth, my trademark request went into "Diario Oficial" from the Republic of Chile.
+Available since July 8, 2022 <a href="https://www.diariooficial.interior.gob.cl/publicaciones/2022/07/08/43297/06/2151601.pdf" target="_blank"> over here</a>.
+
+My INAPI registration currently covers two trademark classes:
+
+- **Class 35:** Advertising, Business, and Retail Services. Allows usage on any communication media within Class 35.
+- **Class 42:** Computer and Software Services and Scientific Services. Allows for scientific and technological services and research and design relating thereto; industrial analysis and research services; design and development of computer hardware and software.
+
+INAPI is in constant collaboration with <a href="https://www.wipo.int" target="_blank">WIPO</a> and <a href="https://prosur.org" target="_blank">Prosur</a> for international affairs. <a href="https://www.inapi.cl/sala-de-prensa/detalle-noticia/comienza-a-regir-en-chile-el-sistema-de-madrid-para-el-registro-internacional-de-marcas" target="_blank">On July 4, 2022, INAPI announced</a> that the "Sistema de Madrid" is opened for business.
+
+<Image src={FooterImage} alt="WIPO and Prosur logos" />

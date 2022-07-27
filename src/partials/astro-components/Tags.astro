@@ -1,0 +1,64 @@
+---
+import type { Values } from '@/types/TypeUnion';
+
+export interface Props {
+  color: Values<typeof colorTags>;
+}
+
+const colorTags = {
+  SLATE: 'SLATE',
+  GRAY: 'GRAY',
+  ZINC: 'ZINC',
+  NEUTRAL: 'NEUTRAL',
+  STONE: 'STONE',
+  RED: 'RED',
+  ORANGE: 'ORANGE',
+  AMBER: 'AMBER',
+  YELLOW: 'YELLOW',
+  LIME: 'LIME',
+  GREEN: 'GREEN',
+  EMERALD: 'EMERALD',
+  TEAL: 'TEAL',
+  CYAN: 'CYAN',
+  SKY: 'SKY',
+  BLUE: 'BLUE',
+  INDIGO: 'INDIGO',
+  VIOLET: 'VIOLET',
+  PURPLE: 'PURPLE',
+  FUCHSIA: 'FUCHSIA',
+  PINK: 'PINK',
+  ROSE: 'ROSE',
+};
+
+const colorToClassMap = {
+  [colorTags.SLATE]: 'bg-slate-400 text-slate-900',
+  [colorTags.GRAY]: 'bg-gray-400 text-gray-900',
+  [colorTags.ZINC]: 'bg-zinc-400 text-zinc-900',
+  [colorTags.NEUTRAL]: 'bg-neutral-400 text-neutral-900',
+  [colorTags.STONE]: 'bg-stone-400 text-stone-900',
+  [colorTags.RED]: 'bg-red-400 text-red-900',
+  [colorTags.ORANGE]: 'bg-orange-400 text-orange-900',
+  [colorTags.AMBER]: 'bg-amber-400 text-amber-900',
+  [colorTags.YELLOW]: 'bg-yellow-400 text-yellow-900',
+  [colorTags.LIME]: 'bg-lime-400 text-lime-900',
+  [colorTags.GREEN]: 'bg-green-400 text-green-900',
+  [colorTags.EMERALD]: 'bg-emerald-400 text-emerald-900',
+  [colorTags.TEAL]: 'bg-teal-400 text-teal-900',
+  [colorTags.CYAN]: 'bg-cyan-400 text-cyan-900',
+  [colorTags.SKY]: 'bg-sky-400 text-sky-900',
+  [colorTags.BLUE]: 'bg-blue-400 text-blue-900',
+  [colorTags.INDIGO]: 'bg-indigo-400 text-indigo-900',
+  [colorTags.VIOLET]: 'bg-violet-400 text-violet-900',
+  [colorTags.PURPLE]: 'bg-purple-400 text-purple-900',
+  [colorTags.FUCHSIA]: 'bg-fuchsia-400 text-fuchsia-900',
+  [colorTags.PINK]: 'bg-pink-400 text-pink-900',
+  [colorTags.ROSE]: 'bg-rose-400 text-rose-900',
+};
+
+const { color } = Astro.props as Props;
+const className = colorToClassMap[color];
+---
+
+<div class={`rounded-full px-2 py-1 text-xs font-semibold ${className}`}>
+  <slot />
+</div>

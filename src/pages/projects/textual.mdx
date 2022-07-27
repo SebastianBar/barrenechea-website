@@ -1,0 +1,22 @@
+import BaseProject from "@/templates/BaseProject.astro";
+import ProjectImage from "@/assets/images/project-textual.png";
+
+export const title = "Textual Pipeline";
+export const description = "A GitHub Actions pipeline which builds the Textual App while also disabling their License Manager.";
+export const pubDate = new Date("2022-03-17T18:41:00Z");
+export const link = "https://github.com/SebastianBar/Textual";
+export const imgSrc = ProjectImage;
+export const imgAlt = "Textual App logo";
+export const tags = ["Pipelines", "Xcode"];
+
+export default function Layout({ children }) {
+  return <BaseProject title={title} description={description} imgSrc={imgSrc} imgAlt={imgAlt} pubDate={pubDate}>{children}</BaseProject>;
+}
+
+<a href="https://www.codeux.com/textual" target="_blank">Textual</a> is an <a href="https://en.wikipedia.org/wiki/Internet_Relay_Chat" target="_blank">IRC</a> client for macOS. I got to know IRC back when I was a kid. It certainly blew my mind at that time to be able to communicate with random people all around the world.
+
+Back at the beginning of 2022, I installed <a href="https://openwrt.org" target="_blank">OpenWRT</a> on a Ubiquiti Access Point, and they stated that they have an IRC presence on the <a href="https://www.oftc.net" target="_blank">OFTC network</a>, so I found Textual as an excellent IRC client (an "upgrade" from my old <a href="https://www.mirc.com" target="_blank">mIRC</a>/<a href="https://www.ircap.com" target="_blank">IRcap</a> combo).
+
+Textual is technically free (since it is an open source project), but it has what they call a "License Manager" whose only goal is to support the project's developers. Thankfully, it's just a couple of variables that I tweaked during the pipeline execution to disable it.
+
+It was just a fun small project for me to test my abilities with pipelines and macOS binaries. Textual is excellent. You should definitely support them.

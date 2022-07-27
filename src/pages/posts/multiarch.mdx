@@ -1,0 +1,39 @@
+import BasePost from "@/templates/BasePost.astro";
+import ProjectImage from "@/assets/images/arm-x86.svg";
+
+export const title = "Multi-arch All The Things";
+export const description =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit.";
+export const pubDate = new Date("2021-09-06T00:00:00Z");
+export const link = "#";
+export const imgSrc = ProjectImage;
+export const imgAlt = 'Two chips, one with the "x86" label, and one with the "ARM" label.';
+export const tags = [];
+
+export default function Layout({ children }) {
+  return <BasePost title={title} description={description} imgSrc={imgSrc} imgAlt={imgAlt} pubDate={pubDate}>{children}</BasePost>;
+}
+
+Back when we started building our initial foundations at <a class='text-amber-400 no-underline hover:text-amber-300' href='https://www.finalis.com' target='_blank'>Finalis</a>, I remember having the idea of giving AWS's Graviton a try.
+It wasn't feasible back in 2018 without building stuff by yourself. Heck, it's 2022, and we (as a community) still struggle to find ARMv8 support in images on Dockerhub.
+
+But on 2020, something big happened: Apple announced the Mac transition to Apple silicon with a 2-year deadline.
+
+At Finalis, we stick with Apple hardware for software development. You have a Unix-like Operating System and fantastic screen quality and audio for watching movies or whatever 🍿.
+
+Back in 2020, a counter started ticking. If we wanted to keep sourcing new Apple devices in the future, Finalis needed to become multi-arch.
+
+
+## Docker
+
+When Apple came out with the M1, and we sourced one, Docker was starting to “play nice” with it, but Docker on ARM involved some hiccups in earlier versions just because the engine was just being tested (by us early developers).
+
+After it seemed everything was fine: 3rd party tools - most of the required images were already available for ARM64, but not all were. [browserless](https://github.com/browserless/chrome) was the one I started tackling to get them built on ARM64, and so I sent a [pull request](https://github.com/browserless/chrome/pull/1847) with the bare minimum of changes for it to work.
+
+With third-party tools covered, it was a thing to make sure Docker built our own images for ARM64. "Hey, you use TypeScript; it should just work!".... Well, as long as your dependencies do not require binaries getting downloaded while running `npm install`.
+
+The major issue? No binaries are provided for ARM64, forcing a binary build while running `npm install` with `make` (post-install scripts anyone?). From a setup perspective, a little bit of love in some of our `Dockerfile` files was all we needed and sorted everything out.
+
+## Pipelines
+
+-- TDB --

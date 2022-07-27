@@ -1,0 +1,25 @@
+---
+import { Image } from '@astrojs/image/components';
+
+import type { IMDX } from '@/types/imdx';
+
+const { content } = Astro.props as { content: IMDX };
+---
+
+<div class="mx-auto mt-5 max-w-prose">
+  <div class="aspect-w-3 aspect-h-2 rounded-lg object-cover object-center">
+    {typeof content.imgSrc === 'string' && (content.imgSrc as string).includes('svg') ? (
+      <img src={content.imgSrc} alt={content.imgAlt} />
+    ) : (
+      <Image
+        class="h-full w-full object-cover object-center"
+        src={content.imgSrc}
+        alt={content.imgAlt}
+      />
+    )}
+  </div>
+
+  <div class="prose prose-invert prose-img:rounded-lg mt-8">
+    <slot />
+  </div>
+</div>
